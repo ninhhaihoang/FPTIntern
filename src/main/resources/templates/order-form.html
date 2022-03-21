@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/home.css" th:href="@{/css/home.css}">
+    <link rel="stylesheet" href="../static/css/add-order.css" th:href="@{/css/add-order.css}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+          th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css}" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Add New Customer</title>
+</head>
+<body>
+<div class="topnav">
+    <a th:href="@{/}">Home</a>
+    <a class="active" th:href="@{/list-products}">Products</a>
+    <a th:href="@{/list-orders}">Orders</a>
+    <div class="search-container">
+        <form th:action="@{/order/search}">
+            <input type="text" placeholder="Search..." name="keyword" />
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+</div>
+<div>
+    <h2 style="text-align: center; margin-top: 20px;">Add new order</h2>
+</div>
+<div class="form-div">
+    <form class="cus-form" method="post" th:action="@{/add-order-process}" th:object="${order}">
+        <div class="form-inputs">
+            <input type="hidden" class="form-control" name="product.productId" id="product.productId" th:attr="value=${prod.productId}">
+            <div class="form-group">
+                <label>Code</label>
+                <input type="text" class="form-control" name="product.productCode" id="product.productCode" th:attr="value=${prod.productCode}" disabled>
+            </div>
+            <div class="form-group">
+                <label>Product name</label>
+                <input type="text" class="form-control" name="product.productName" id="product.productName" th:value="${prod.productName}" disabled>
+            </div>
+            <div class="form-group">
+                <label>Customer</label>
+                <select class="form-select" th:field="*{customer}">
+                    <option th:each="c:${cust}" th:value="${c.customerId}" th:text="${c.customerCode}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Price</label>
+                <input type="text" class="form-control" name="product.price" id="product.price" th:value="${prod.price}+ ' $'" disabled>
+            </div>
+            <div class="form-group">
+                <label>Quantity</label>
+                <div class="input-group-btni plus-minus-input">
+                    <div class="input-group-button">
+                        <a class="btn btn-secondary" id="minusBtn" onclick="minusBtn()">
+                            <i class="fa fa-minus" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <input class="input-group-field" th:field="*{quantity}" type="text">
+                    <div class="input-group-button">
+                        <a class="btn btn-secondary" id="plusBtn" onclick="plusBtn()">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a class="btn btn-danger" th:href="@{/list-products}">Cancel</a>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    let qtyInput = document.getElementById("quantity");
+    let qty = 3;
+    qtyInput.value = qty;
+
+     function minusBtn() {
+        if (qty > 0) {
+            qty = qty-1;
+            qtyInput.value = qty;
+        }
+    }
+     function plusBtn() {
+        qty = qty+1;
+        qtyInput.value = qty;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+body {
+    background-color: rgb(53, 61, 68);
+}
+
+.form-div {
+    display:block;
+    margin: auto;
+    width: 500px;
+}
+
+.cus-form {
+    display:block;
+    border-radius: 2%;
+    border: 2px solid #888888;
+    box-shadow: 5px 10px #888888;
+}
+
+.form-inputs {
+    padding: 0px 25px 80px 20px;
+}
+
+.form-div form input, label {
+    width: 450px;
+    margin-top: 10px;
+}
+
+.form-div form button, a {
+    float: right;
+    margin-top: 20px;
+    margin-left: 20px;
+}
