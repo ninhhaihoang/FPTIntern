@@ -17,8 +17,8 @@ public class Product {
     @Column(name = "product_id")
     private Long productId;
 
-    @Column(name = "product_code")
-    private String productCode;
+    @Column(name = "product_description")
+    private String productDescription;
 
     @Column(name = "product_name")
     private String productName;

@@ -39,14 +39,15 @@
         <th style="width: 200px;">&nbsp;</th>
     </tr>
     <tr th:each="o:${order}">
-        <td th:text="${o.customer.customerCode}"></td>
+        <td th:text="${o.customer.fullName}"></td>
         <td th:text="${o.product.productName}"></td>
         <td th:text="${o.quantity}"></td>
         <td th:text="${o.total()}"></td>
         <td th:text="${o.status.statusName}"></td>
         <td>
             <a class="btn btn-primary" th:href="@{'/update-order/'+${o.orderId}}">Update</a>
-            <a class="btn btn-danger" th:href="@{'/delete-order/'+${o.orderId}}">Delete</a>
+            <a class="btn btn-danger" th:href="@{'/delete-order/'+${o.orderId}}"
+               onclick="return confirm('Are you sure you want to delete this order?')">Delete</a>
         </td>
     </tr>
 </table>

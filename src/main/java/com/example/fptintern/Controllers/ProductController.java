@@ -24,6 +24,7 @@ public class ProductController {
         List<Product> products = productService.getProducts();
         model.addAttribute("keyword", keyword);
         model.addAttribute("product", products);
+        model.addAttribute("productDetail", new Product());
         return "products";}
         catch (Exception e) {
         System.out.println(e);
@@ -70,19 +71,8 @@ public class ProductController {
         List<Product> products = productService.searchProducts(keyword);
         System.out.println("keyword:" + keyword);
         model.addAttribute("product", products);
+        model.addAttribute("productDetail", new Product());
         return "products";}
-        catch (Exception e) {
-            System.out.println(e);
-            return "404";
-        }
-    }
-
-    @GetMapping(value = "/product-update/{productId}")
-    public String updatePage (@PathVariable(name = "productId") Long productId, Model model) {
-        try {
-        Product product = productService.getProduct(productId);
-        model.addAttribute("product", product);
-        return "prod-form";}
         catch (Exception e) {
             System.out.println(e);
             return "404";

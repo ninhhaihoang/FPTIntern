@@ -10,5 +10,4 @@ public interface ProductService {
     List<Product> searchProducts(String s);
     void deleteProduct(Long id);
     void saveProduct(Product product);
-    void updateProduct(Product product);
 }

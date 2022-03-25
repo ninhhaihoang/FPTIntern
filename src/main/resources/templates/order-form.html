@@ -34,17 +34,13 @@
         <div class="form-inputs">
             <input type="hidden" class="form-control" name="product.productId" id="product.productId" th:attr="value=${prod.productId}">
             <div class="form-group">
-                <label>Code</label>
-                <input type="text" class="form-control" name="product.productCode" id="product.productCode" th:attr="value=${prod.productCode}" disabled>
-            </div>
-            <div class="form-group">
                 <label>Product name</label>
                 <input type="text" class="form-control" name="product.productName" id="product.productName" th:value="${prod.productName}" disabled>
             </div>
             <div class="form-group">
                 <label>Customer</label>
                 <select class="form-select" th:field="*{customer}">
-                    <option th:each="c:${cust}" th:value="${c.customerId}" th:text="${c.customerCode}"></option>
+                    <option th:each="c:${cust}" th:value="${c.customerId}" th:text="${c.fullName}"></option>
                 </select>
             </div>
             <div class="form-group">

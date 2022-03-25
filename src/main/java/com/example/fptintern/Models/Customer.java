@@ -20,8 +20,6 @@ public class Customer {
     @Column(name = "customer_id")
     private Long customerId;
 
-    @Column(name = "customer_code")
-    private String customerCode;
 
     @Column(name = "customer_name")
     private String fullName;
